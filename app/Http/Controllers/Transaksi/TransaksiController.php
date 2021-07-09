@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers\Transaksi;
 
-use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use App\Model\Transaksi\Transaksi;
+use App\Http\Resources\TransaksiResource;
+
 
 class TransaksiController extends Controller
 {
@@ -15,6 +18,8 @@ class TransaksiController extends Controller
     public function index()
     {
         //
+        return TransaksiResource::collection(Transaksi::where('status', 0)->latest()->get());
+
     }
 
     /**
