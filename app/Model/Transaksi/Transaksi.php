@@ -9,6 +9,7 @@ use App\Model\Tiket\Tiket;
 class Transaksi extends Model
 {
     //
+    protected $guarded = [];
     public function tiket()
     {
         # code...

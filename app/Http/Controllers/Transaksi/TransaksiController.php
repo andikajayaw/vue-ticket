@@ -42,6 +42,10 @@ class TransaksiController extends Controller
     public function store(Request $request)
     {
         //
+        $transaksi = Transaksi::create($request->all());
+
+        return response(new TransaksiResource($transaksi), Response::HTTP_CREATED);
+
     }
 
     /**
@@ -50,9 +54,10 @@ class TransaksiController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Transaksi $transaksi)
     {
         //
+        return new TransaksiResource($transaksi);
     }
 
     /**
@@ -73,9 +78,13 @@ class TransaksiController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Transaksi $transaksi)
     {
         //
+        $transaksi = Transaksi::where('status', 0);
+        $transaksi->update(['status' => '1']);
+
+        return response(Response::HTTP_ACCEPTED);
     }
 
     /**
