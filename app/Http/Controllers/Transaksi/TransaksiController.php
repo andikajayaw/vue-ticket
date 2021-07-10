@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Transaksi;
 
+use Symfony\Component\HttpFoundation\Response;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Model\Transaksi\Transaksi;
@@ -83,8 +84,10 @@ class TransaksiController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Transaksi $transaksi)
     {
         //
+        $transaksi->delete();
+        return response('Transaction Deleted', Response::HTTP_CREATED);
     }
 }
