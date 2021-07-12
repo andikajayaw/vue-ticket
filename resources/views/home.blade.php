@@ -21,5 +21,19 @@
     </div>
 </div> -->
 
-<example-component></example-component>
+<!-- <example-component></example-component> -->
+
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card">
+                <!-- <div class="card-header">Category</div> -->
+
+                <div class="card-body">
+                    <router-view></router-view>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 @endsection
