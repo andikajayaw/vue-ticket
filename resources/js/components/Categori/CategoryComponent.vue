@@ -14,16 +14,23 @@
         hide-details
       ></v-text-field>
     </v-card-title>
-    <v-data-table :headers="headers" :items="desserts" :search="search">
+    <v-data-table :headers="headers" :items="categories" :search="search">
       <template v-slot:item="row">
         <tr>
-          <td>{{ row.item.name }}</td>
+          <td>{{ row.item.name_categori }}</td>
           <td>
-            <button type="button" class="btn btn-info btn-sm">EDIT</button>
-            <button type="button" class="btn btn-danger btn-sm">DELETE</button>
+            <button type="button" class="btn btn-info btn-sm btn-flat">
+              EDIT
+            </button>
+            <button type="button" class="btn btn-danger btn-sm btn-flat">
+              DELETE
+            </button>
           </td>
         </tr>
       </template>
+      <v-alert slot="no-results" :value="true" color="red" icon="warning">
+        Your search for "{{ search }}" found no results.
+      </v-alert>
     </v-data-table>
   </v-card>
 </template>
@@ -36,16 +43,22 @@ export default {
       headers: [
         {
           text: "Name Category",
-          value: "name",
+          value: "name_categori",
         },
         { text: "Action", value: "" },
       ],
-      desserts: [
-        {
-          name: "Frozen Yogurt",
-        },
-      ],
+      categories: [],
     };
+  },
+  methods: {
+    getCategories() {
+      axios
+        .get("http://vue-ticket.test/api/categori")
+        .then((response) => (this.categories = response.data.data));
+    },
+  },
+  created() {
+    this.getCategories();
   },
 };
 </script>
