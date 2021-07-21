@@ -2,10 +2,15 @@
   <v-app>
     <v-card>
       <v-card-title>
-        <!-- Nutrition -->
-        <button class="btn btn-primary btn-sm float-right" type="button">
-          Add Category
-        </button>
+        <div class="card-header">
+          <router-link
+            class="btn btn-info btn-sm float-right"
+            type="button"
+            to="/categori/create"
+          >
+            Add Category
+          </router-link>
+        </div>
         <v-spacer></v-spacer>
         <v-text-field
           v-model="search"
@@ -29,6 +34,7 @@
             </td>
           </tr>
         </template>
+        <br />
         <v-alert slot="no-results" :value="true" color="red" icon="warning">
           Your search for "{{ search }}" found no results.
         </v-alert>
